@@ -8,22 +8,21 @@ public class ConsoleUI {
     public String getSequence(SequenceManager SM){
     System.out.println("Kindly enter the DNA/RNA sequence:");
     String sequenceToCheck = input.nextLine();
-    // REMOVE THIS LINE: sequenceToCheck = sequenceToCheck.toLowerCase();
+
     boolean isValid = SM.isValidSequence(sequenceToCheck); // Pass the original input here
     if(!isValid){ // Simplified check
         while (true) {
             System.out.println("Enter a valid input please");
             sequenceToCheck = input.nextLine();
-            // REMOVE THIS LINE TOO: sequenceToCheck = sequenceToCheck.toLowerCase();
+            
             isValid = SM.isValidSequence(sequenceToCheck);
             if(isValid){
                 break;
             }
         }
     }
-    // Decide if you want to return the sequence in uppercase or lowercase.
-    // For consistency with genetic code, returning uppercase is often best.
-     return sequenceToCheck.toUpperCase(); // Return consistent case for downstream use
+
+     return sequenceToCheck.toUpperCase(); 
     }   
     public void printRNAORDNA(String inputSequence, boolean isDNA){
         
@@ -49,8 +48,20 @@ public class ConsoleUI {
 
 
     public void printDNAStrands(String DNA, String antiDNA){
-        System.out.println("Strand 1:\t5'-"+DNA+"-3'");
-        System.out.println("Strand 2:\t3'-"+antiDNA+"-5'");
+        if(antiDNA==null){
+            System.out.println("RNA Strand:\t5'-"+DNA+"-3'");
+        }else{
+            System.out.println("Strand 1:\t5'-"+DNA+"-3'");
+            System.out.println("Strand 2 (Reverse Complement):\t5'-"+antiDNA+"-3'");
+        }
+        
+    }
+    public void printmRNAForm(String StrandOne, String StrandTwo){
+        if(StrandTwo!=null){
+            System.out.println("Converting both DNA strands to mRNA");
+            System.out.println("Strand 1:\t5'-"+StrandOne+"-3'");
+            System.out.println("Strand 2:\t5'-"+StrandTwo+"-3");
+        }
     }
 
 

@@ -5,13 +5,11 @@ public class SequenceManager {
         if (sequenceToCheck == null || sequenceToCheck.isEmpty()) {
             return false;
         }
+        String upperCaseSequence = sequenceToCheck.toLowerCase();
 
-        // Convert to uppercase ONCE inside isValidSequence
-        String upperCaseSequence = sequenceToCheck.toLowerCase(); // <<< ADD THIS LINE
-
-        for (int i = 0; i < upperCaseSequence.length(); i++) { // <<< Loop through the uppercase version
+        for (int i = 0; i < upperCaseSequence.length(); i++) { 
             char base = upperCaseSequence.charAt(i);
-            // Now, only check against uppercase characters
+
             if (base != 'a' && base != 't' && base != 'c' && base != 'g' && base != 'u') {
                 return false;
             }
@@ -60,7 +58,7 @@ public class SequenceManager {
     }
 
     public String[] codonSplitter(String DNA){
-        System.out.println(DNA);
+        
         GeneticDatabase GD = new GeneticDatabase();
         String codonToSearch = "";
         String Frame1 = "";
@@ -121,7 +119,7 @@ public class SequenceManager {
         isTranslating = false;
         didFindStopCodon = false;
         for (; j < DNA.length(); j+=3) {
-            System.out.println(j);
+            
             if(DNA.length()-j>2){
                 if(DNA.charAt(j)=='a' && DNA.charAt(j+1) == 'u' && DNA.charAt(j+2)=='g'){
                     isTranslating = true;
@@ -177,7 +175,7 @@ public class SequenceManager {
                 }
                 if(isTranslating==true){
                         try {
-                            System.out.println(j);
+                            
                             codonToSearch += DNA.charAt(k);
                             codonToSearch += DNA.charAt(k+1);
                             codonToSearch += DNA.charAt(k+2);
